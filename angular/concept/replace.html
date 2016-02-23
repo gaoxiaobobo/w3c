@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>invoice</title>
+    <script src="/js/angular-1.5.0.js"></script>
+</head>
+
+<body>
+    <div ng-app="myApp">
+        <input replace="[^a-zA-Z]" with="" ng-model="name">
+    </div>
+</body>
+<script type="text/javascript">
+
+angular.module('myApp', []).directive('replace', function() {
+    return {
+        require: 'ngModel',
+        scope: {
+            regex: '@replace',
+            with: '@with'
+        },
+        link: function(scope, element, attrs, model) {
+            model.$parsers.push(function(val) {
+                // val = val.replace(/\s+/g,""); 
+                // if(val == ""){
+                //     model.$setViewValue("");
+                //     model.$render();
+                //     return val;
+                // }
+                console.log("val:" + val);
+                var regex = new RegExp(scope.regex);
+                var replaced = val.replace(/\s+/g, "");
+                replaced = val.replace(regex, scope.with);
+                console.log("rp:" + replaced);
+                if (replaced !== val ) {
+                    model.$setViewValue(replaced);
+                    model.$render();
+                }
+                return replaced;
+            });
+        }
+    };
+})
+</script>
+
+</html>

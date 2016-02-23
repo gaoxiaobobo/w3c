@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>databinding</title>
+    <script type="text/javascript" src="/js/angular-1.5.0.js"></script>
+</head>
+
+<body>
+    <div ng-app ng-init="qty=1;cost=2">
+        <div>quantity:
+            <input type="number" ng-model="qty">
+        </div>
+        <div>cost:
+            <input type="number" ng-model="cost">
+        </div>
+        <div><b>total:</b> {{qty * cost|currency }}</div>
+    </div>
+</body>
+
+</html>

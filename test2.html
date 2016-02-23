@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>tt</title>
+    <script src="js/angular-1.5.0.js"></script>
+</head>
+
+<body ng-app="myApp">
+    <div ng-controller="myCtrl">
+        {{firstName + " " + lastName}}
+    </div>
+    <script>
+    var app = angular.module("myApp", []);
+    app.controller('myCtrl', ['$scope', function($scope){
+      $scope.firstName = "John";
+      $scope.lastName = "Doe";
+    }])
+    </script>
+</body>
+
+</html>

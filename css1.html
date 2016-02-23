@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<style type="text/css"></style>
+	<script type="text/javascript" src="js/angular-1.3.0.js"></script>
+</head>
+<body>
+	<div>
+		<xingoo></xingoo>
+		<xingoo></xingoo>
+		<xingoo></xingoo>
+	</div>
+
+	<script type="text/javascript">
+            var myAppModule = angular.module("myApp",[]);
+
+            myAppModule.directive("xingoo",function(){
+                return {
+                    restrict:'AE',
+                    template:'<div><input type="text" ng-model="username"/>{{username}}</div><br>',
+                    repalce:true
+                }
+            })
+    </script>
+
+</body>
+</html>

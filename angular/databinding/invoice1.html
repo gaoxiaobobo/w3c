@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>invoice</title>
+    <script src="/js/angular-1.5.0.js"></script>
+</head>
+
+<body>
+    <div ng-app="myApp" ng-controller="InvoiceController as invoice">
+    <input ng-model="customSpice">
+        <button ng-click="spicy('chili')">chili</button>
+        <button ng-click="spicy(customSpice)">customSpice</button>
+        <p> the food is {{spice}} spicy</p>
+    </div>
+</body>
+<script type="text/javascript">
+angular.module('myApp', [])
+    .controller('InvoiceController', ['$scope', function($scope) {
+        $scope.spice = 'very';
+        $scope.customSpice = 'wasabi';
+        $scope.spicy = function(value) {
+          $scope.spice = value;
+        };
+        $scope.jalaSpicy = function(value) {
+           $scope.spice = 'jala';
+        };
+    }]);
+</script>
+
+</html>
