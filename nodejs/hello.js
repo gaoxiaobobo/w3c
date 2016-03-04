@@ -6,4 +6,4 @@ function greet(name) {
     console.log(s + ', ' + name + '!');
 }
 
-module.exports = 123;
+module.exports = greet;
