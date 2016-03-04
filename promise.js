@@ -1,7 +1,7 @@
 var a = new Promise(function(resolve, reject) {
   setTimeout(function() {
-  reject(3)
-}, 550)
+    reject(3)
+  }, 550)
 })
 
 a.then(function() {
