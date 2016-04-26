@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>docsTimeDirective</title>
+  <script src="/js/angular-1.5.0.js"></script>
+</head>
+
+<body ng-app="docsTimeDirective">
+  <div ng-controller="Controller">
+    Date forma22:
+    <input ng-model="format">
+    <input type="checkbox" ng-model="isShow" ng-true-value="true" ng-false-value="false">
+    <hr/> Current time is: <span ng-if="isShow" my-current-time="format" ></span>
+    
+  </div>
+</body>
+<script>
+angular.module('docsTimeDirective', [])
+  .controller('Controller', ['$scope', function($scope) {
+    $scope.isShow = true;
+    $scope.format = 'M/d/yy h:mm:ss a';
+  }])
+  .directive('myCurrentTime', ['$interval', 'dateFilter', function($interval, dateFilter) {
+
+    function link2(scope, element, attrs) {
+      var format,     timeoutId;
+
+      function updateTime() {
+        element.text(dateFilter(new Date(), format));
+      }
+
+      scope.$watch(attrs.myCurrentTime, function(value) {
+        format = value;
+        updateTime();
+      });
+
+      element.on('$destroy', function() {
+        console.log("bb");
+        $interval.cancel(timeoutId);
+      });
+
+      // start the UI update process; save the timeoutId for canceling
+      timeoutId = $interval(function() {
+        updateTime(); // update DOM
+      }, 1000);
+    }
+
+    return {
+      link: link2
+    };
+  }]);
+</script>
+
+</html>

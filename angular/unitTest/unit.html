@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>unit</title>
+  <script src="/js/angular-1.5.0.js"></script>
+  <script src="/node_modules/expect.js/index.js"></script>
+  <script src="/js/mocha.js"></script>
+  <link rel="stylesheet" href="/css/mocha.css" />
+</head>
+
+<body>
+  </div>
+  <div id="mocha"></div>
+  <script>
+  mocha.setup('bdd');
+  </script>
+  <script type="text/javascript">
+    describe('Array', function() {
+      describe('#indexOf()', function() {
+        it('should return -1 when the value is not present', function() {
+          expect([1, 2, 3,5].indexOf(5)).to.equal(-1);
+        });
+        it('should return -1 when the value is not present', function() {
+          expect([1, 2, 3].indexOf(0)).to.equal(-1);
+        });
+      });
+    });
+  </script>
+  <script>
+  mocha.run();
+  </script>
+</body>
+
+</html>

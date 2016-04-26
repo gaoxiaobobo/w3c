@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="age" size=3 onChange="validate(this, 18, 99);">
+    <div class="step3-head-left">
+        <p><span class="col1">需要添加考生</span><span class="col2 ng-binding">0</span><span class="col3">人</span></p>
+    </div>
+    <script>
+    function validate(obj, lowval, hival) {
+        if ((obj.value < lowval) || (obj.value > hival))
+            console.log('Invalid Value!');
+    }
+    </script>
+</body>
+
+</html>

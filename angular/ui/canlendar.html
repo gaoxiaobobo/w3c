@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>calendar</title>
+    <link rel="stylesheet" href="/bower_components/fullcalendar/dist/fullcalendar.css" />
+    <!-- jquery, moment, and angular have to get included before fullcalendar -->
+    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/bower_components/angular-ui-calendar/src/calendar.js"></script>
+    <script type="text/javascript" src="/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="/bower_components/fullcalendar/dist/gcal.js"></script>
+    <script src='/bower_components/fullcalendar/dist/lang-all.js'></script>
+</head>
+
+<body ng-app="App" ng-controller="ctlTest">
+    <div ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
+    <script>
+    var app = angular.module('App', ['ui.calendar']);
+    app.controller('ctlTest', ['$scope', function($scope) {
+       
+
+        var date = new Date();
+        var d = date.getDate();
+        var m = date.getMonth();
+        var y = date.getFullYear();
+
+      $scope.events = [
+      {title: 'All Day Event',start: new Date(y, m, 1),color: 'red'},
+      {title: 'All Day Event',start: new Date(y, m, 1),color: 'blue'},
+      {title: 'All Day Event',start: new Date(y, m, 1)},
+      {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
+      {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
+      {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
+      {title: 'Birthday Party',start: new Date(y, m, d + 1, 20, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
+      {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
+      ];
+      /* alert on eventClick */
+      $scope.alertOnEventClick = function( date, jsEvent, view){
+         console.log(date.format() + ' was clicked ');
+      };
+
+        $scope.uiConfig = {
+            calendar: {
+                lang: 'zh-cn',
+                height: 450,
+                editable: false,
+                header: {
+                    left: 'month basicWeek basicDay ',
+                    center: 'title',
+                    right: 'today prev,next'
+                },
+                dayClick: $scope.alertOnEventClick,
+                eventDrop: $scope.alertOnDrop,
+                eventResize: $scope.alertOnResize
+            }
+        };
+        
+         
+         $scope.eventSources = [$scope.events];
+
+    }]);
+    </script>
+</body>
+
+</html>
